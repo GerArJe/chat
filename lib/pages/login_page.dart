@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:chat/widgets/custom_input.dart';
+import 'package:chat/widgets/labels.dart';
+import 'package:chat/widgets/logo.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -13,38 +15,12 @@ class LoginPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            _Logo(),
+            Logo(),
             _Form(),
-            _Labels(),
+            Labels(),
             Text(
               'Terms and conditions',
               style: TextStyle(fontWeight: FontWeight.w200),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _Logo extends StatelessWidget {
-  const _Logo({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        width: 170,
-        margin: EdgeInsets.only(top: 50),
-        child: Column(
-          children: [
-            Image(image: AssetImage('assets/tag-logo.png')),
-            SizedBox(
-              height: 20,
-            ),
-            Text(
-              'Messenger',
-              style: TextStyle(fontSize: 30),
             )
           ],
         ),
@@ -61,6 +37,9 @@ class _Form extends StatefulWidget {
 }
 
 class __FormState extends State<_Form> {
+  final emailCtrl = TextEditingController();
+  final passwordCtrl = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -68,39 +47,26 @@ class __FormState extends State<_Form> {
       padding: EdgeInsets.symmetric(horizontal: 50),
       child: Column(
         children: [
-          CustomInput(),
-          CustomInput()
-          // ElevatedButton(onPressed: () {}, child: Text('data'))
+          CustomInput(
+            icon: Icons.mail_outline,
+            placeHolder: 'Email',
+            keyboardType: TextInputType.emailAddress,
+            textController: emailCtrl,
+          ),
+          CustomInput(
+            icon: Icons.lock_outline,
+            placeHolder: 'Password',
+            textController: passwordCtrl,
+            isPassword: true,
+          ),
+          ElevatedButton(
+              onPressed: () {
+                print(emailCtrl.text);
+                print(passwordCtrl.text);
+              },
+              child: Text('data'))
         ],
       ),
     );
-  }
-}
-
-class _Labels extends StatelessWidget {
-  const _Labels({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        child: Column(
-      children: [
-        Text(
-          'Don\'t have accout?',
-          style: TextStyle(
-              color: Colors.black54, fontSize: 15, fontWeight: FontWeight.w300),
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        Text(
-          'Create now!',
-          style: TextStyle(
-              color: Colors.blue[600],
-              fontSize: 18,
-              fontWeight: FontWeight.bold),
-        )
-      ],
-    ));
   }
 }
