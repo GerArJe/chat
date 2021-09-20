@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
 
 class Labels extends StatelessWidget {
-  const Labels({Key? key}) : super(key: key);
+  final String route;
+  final String title;
+  final String subtitle;
+
+  const Labels(
+      {Key? key,
+      required this.route,
+      required this.title,
+      required this.subtitle})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -9,19 +18,24 @@ class Labels extends StatelessWidget {
         child: Column(
       children: [
         Text(
-          'Don\'t have accout?',
+          title,
           style: TextStyle(
               color: Colors.black54, fontSize: 15, fontWeight: FontWeight.w300),
         ),
         SizedBox(
           height: 10,
         ),
-        Text(
-          'Create now!',
-          style: TextStyle(
-              color: Colors.blue[600],
-              fontSize: 18,
-              fontWeight: FontWeight.bold),
+        GestureDetector(
+          child: Text(
+            subtitle,
+            style: TextStyle(
+                color: Colors.blue[600],
+                fontSize: 18,
+                fontWeight: FontWeight.bold),
+          ),
+          onTap: () {
+            Navigator.pushReplacementNamed(context, route);
+          },
         )
       ],
     ));
