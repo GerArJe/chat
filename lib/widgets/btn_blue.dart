@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class ButtonBlue extends StatelessWidget {
   final String text;
-  final VoidCallback onPressed;
+  final void Function()? onPressed;
 
   const ButtonBlue(
       {Key? key, required this.text, required this.onPressed})
@@ -22,8 +22,6 @@ class ButtonBlue extends StatelessWidget {
         )),
       ),
       style: ButtonStyle(
-        elevation: MaterialStateProperty.all(2),
-        backgroundColor: MaterialStateProperty.all(Colors.blue),
         shape: MaterialStateProperty.all(StadiumBorder()),
       ),
     );
