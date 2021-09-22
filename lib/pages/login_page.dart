@@ -6,6 +6,7 @@ import 'package:chat/widgets/custom_input.dart';
 import 'package:chat/widgets/labels.dart';
 import 'package:chat/widgets/logo.dart';
 import 'package:chat/widgets/btn_blue.dart';
+import 'package:chat/helpers/show_alert.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -82,12 +83,18 @@ class __FormState extends State<_Form> {
             text: 'Log In',
             onPressed: authService.authenticating
                 ? null
-                : () {
+                : () async {
                     FocusScope.of(context).unfocus();
-                    authService.login(
+
+                    final loginOk = await authService.login(
                       emailCtrl.text.trim(),
                       passwordCtrl.text.trim(),
                     );
+
+                    if (loginOk) {
+                    } else {
+                      showAlert(context, 'Login error', 'check credentials');
+                    }
                   },
           ),
         ],
