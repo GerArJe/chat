@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'package:chat/services/socket_service.dart';
+import 'package:chat/services/auth_service.dart';
+
 import 'package:chat/widgets/custom_input.dart';
 import 'package:chat/widgets/labels.dart';
 import 'package:chat/widgets/logo.dart';
 import 'package:chat/widgets/btn_blue.dart';
 import 'package:chat/helpers/show_alert.dart';
-import 'package:chat/services/auth_service.dart';
 
 class RegisterPage extends StatelessWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -62,6 +64,9 @@ class __FormState extends State<_Form> {
     final authService = Provider.of<AuthService>(
       context,
     );
+    final socketService = Provider.of<SocketService>(
+      context,
+    );
 
     return Container(
       margin: EdgeInsets.only(top: 40),
@@ -100,6 +105,7 @@ class __FormState extends State<_Form> {
                     );
 
                     if (registerOk == true) {
+                      socketService.connect();
                       Navigator.pushReplacementNamed(
                         context,
                         'users',

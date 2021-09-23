@@ -7,6 +7,7 @@ import 'package:chat/widgets/labels.dart';
 import 'package:chat/widgets/logo.dart';
 import 'package:chat/widgets/btn_blue.dart';
 import 'package:chat/helpers/show_alert.dart';
+import 'package:chat/services/socket_service.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -61,6 +62,9 @@ class __FormState extends State<_Form> {
     final authService = Provider.of<AuthService>(
       context,
     );
+    final socketService = Provider.of<SocketService>(
+      context,
+    );
 
     return Container(
       margin: EdgeInsets.only(top: 40),
@@ -92,6 +96,7 @@ class __FormState extends State<_Form> {
                     );
 
                     if (loginOk) {
+                      socketService.connect();
                       Navigator.pushReplacementNamed(context, 'users');
                     } else {
                       showAlert(context, 'Login error', 'check credentials');

@@ -3,8 +3,10 @@ import 'package:provider/provider.dart';
 
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-import 'package:chat/models/user.dart';
 import 'package:chat/services/auth_service.dart';
+import 'package:chat/services/socket_service.dart';
+
+import 'package:chat/models/user.dart';
 
 class UsersPage extends StatefulWidget {
   const UsersPage({Key? key}) : super(key: key);
@@ -26,6 +28,9 @@ class _UsersPageState extends State<UsersPage> {
   @override
   Widget build(BuildContext context) {
     final authService = Provider.of<AuthService>(context);
+    final socketService = Provider.of<SocketService>(
+      context,
+    );
     final user = authService.user;
 
     return Scaffold(
@@ -38,6 +43,7 @@ class _UsersPageState extends State<UsersPage> {
         backgroundColor: Colors.white,
         leading: IconButton(
             onPressed: () {
+              socketService.disconnect();
               Navigator.restorablePushReplacementNamed(context, 'login');
               AuthService.deleteToken();
             },

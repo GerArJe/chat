@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:chat/services/auth_service.dart';
 import 'package:chat/pages/login_page.dart';
 import 'package:chat/pages/users_page.dart';
+import 'package:chat/services/socket_service.dart';
 
 class LoadingPage extends StatelessWidget {
   const LoadingPage({Key? key}) : super(key: key);
@@ -27,10 +28,14 @@ class LoadingPage extends StatelessWidget {
       context,
       listen: false,
     );
+    final socketService = Provider.of<SocketService>(
+      context,
+      listen: false,
+    );
 
     final authenticated = await authService.isLoggedIn();
     if (authenticated) {
-      // Navigator.pushReplacementNamed(context, 'users');
+      socketService.connect();
       Navigator.pushReplacement(
         context,
         PageRouteBuilder(
