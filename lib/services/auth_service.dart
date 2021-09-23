@@ -43,8 +43,6 @@ class AuthService with ChangeNotifier {
     final resp = await http.post(url,
         body: jsonEncode(data), headers: {'Content-Type': 'application/json'});
 
-    print(resp.body);
-
     this.authenticating = false;
 
     if (resp.statusCode == 200) {
@@ -70,8 +68,6 @@ class AuthService with ChangeNotifier {
     final resp = await http.post(url,
         body: jsonEncode(data), headers: {'Content-Type': 'application/json'});
 
-    print(resp.body);
-
     this.authenticating = false;
 
     if (resp.statusCode == 200) {
@@ -96,7 +92,6 @@ class AuthService with ChangeNotifier {
           'x-token': token,
         },
       );
-      print(resp.body);
 
       if (resp.statusCode == 200) {
         final loginResponse = loginResponseFromJson(resp.body);
