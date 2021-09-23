@@ -92,6 +92,7 @@ class __FormState extends State<_Form> {
                     );
 
                     if (loginOk) {
+                      Navigator.pushReplacementNamed(context, 'users');
                     } else {
                       showAlert(context, 'Login error', 'check credentials');
                     }
