@@ -6,6 +6,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:chat/services/auth_service.dart';
 import 'package:chat/services/socket_service.dart';
 import 'package:chat/services/users_service.dart';
+import 'package:chat/services/chat_service.dart';
 
 import 'package:chat/models/user.dart';
 
@@ -22,12 +23,6 @@ class _UsersPageState extends State<UsersPage> {
   final usersService = UsersService();
 
   List<User> users = [];
-
-  // final users = [
-  //   User(uid: '1', name: 'Maria', email: 'test1@test.com', online: true),
-  //   User(uid: '2', name: 'Felipe', email: 'test2@test.com', online: false),
-  //   User(uid: '3', name: 'Fernando', email: 'test3@test.com', online: true),
-  // ];
 
   @override
   void initState() {
@@ -108,6 +103,11 @@ class _UsersPageState extends State<UsersPage> {
             color: user.online ? Colors.green[300] : Colors.red,
             borderRadius: BorderRadius.circular(100)),
       ),
+      onTap: () {
+        final chatService = Provider.of<ChatService>(context, listen: false);
+        chatService.userTo = user;
+        Navigator.pushNamed(context, 'chat');
+      },
     );
   }
 
