@@ -5,6 +5,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import 'package:chat/services/auth_service.dart';
 import 'package:chat/services/socket_service.dart';
+import 'package:chat/services/users_service.dart';
 
 import 'package:chat/models/user.dart';
 
@@ -18,12 +19,21 @@ class UsersPage extends StatefulWidget {
 class _UsersPageState extends State<UsersPage> {
   RefreshController _refreshController =
       RefreshController(initialRefresh: false);
+  final usersService = UsersService();
 
-  final users = [
-    User(uid: '1', name: 'Maria', email: 'test1@test.com', online: true),
-    User(uid: '2', name: 'Felipe', email: 'test2@test.com', online: false),
-    User(uid: '3', name: 'Fernando', email: 'test3@test.com', online: true),
-  ];
+  List<User> users = [];
+
+  // final users = [
+  //   User(uid: '1', name: 'Maria', email: 'test1@test.com', online: true),
+  //   User(uid: '2', name: 'Felipe', email: 'test2@test.com', online: false),
+  //   User(uid: '3', name: 'Fernando', email: 'test3@test.com', online: true),
+  // ];
+
+  @override
+  void initState() {
+    _loadUsers();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -102,9 +112,9 @@ class _UsersPageState extends State<UsersPage> {
   }
 
   _loadUsers() async {
-// monitor network fetch
-    await Future.delayed(Duration(milliseconds: 1000));
-    // if failed,use refreshFailed()
+    users = await usersService.getUsers();
+    setState(() {});
+
     _refreshController.refreshCompleted();
   }
 }
