@@ -1,16 +1,22 @@
 # chat
 
-A new Flutter project.
+A Chat App with flutter.
 
-## Getting Started
+Back end Project: https://github.com/GerArJe/chat_server
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<center>
+    <table>
+        <tbody>
+            <tr>
+                <td><img src="https://user-images.githubusercontent.com/46495565/134952297-74306273-6915-4e54-a1fd-815cd57f73b6.png" height="500px" /></td>
+                <td><img src="https://user-images.githubusercontent.com/46495565/134952303-25fefc9a-a517-4306-9b93-4dc7bdf9594b.png" height="500px"/></td>
+                <td><img src="https://user-images.githubusercontent.com/46495565/134952311-6ae9e4ea-6f62-46a3-a10c-406bf37ca97b.png" height="500px"/></td>
+            </tr>
+            <tr>
+                <td><img src="https://user-images.githubusercontent.com/46495565/134952317-873922d4-4894-444f-a31d-76f193a201bf.png" height="500px" /></td>
+                <td><img src="https://user-images.githubusercontent.com/46495565/134952321-fc3f8887-80bf-429d-a39b-209cd7e5b334.png" height="500px"/></td>
+            </tr>
+        </tbody>
+    </table>
+</center>
